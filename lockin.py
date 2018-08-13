@@ -314,8 +314,9 @@ or provide more data.""".format(coeffs, t.size))
         self.fir = b = lock2(f0, fp, fc, fs, coeff_ratio, coeffs, window,
                              print_response=print_response)
 
-        if coeffs > self.x.size:
-            raise ValueError(
+        if coeffs is not None:
+            if coeffs > self.x.size:
+                raise ValueError(
     """No valid output when 'coeffs' > t.size (coeffs: {}, t.size: {}).
     Reduce coeffs by increasing bw, bw_ratio, decreasing coeff_ratio,
     or provide more data.""".format(coeffs, t.size))
